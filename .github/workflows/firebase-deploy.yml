@@ -16,13 +16,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'  # Set the appropriate Node.js version
+          node-version: '16'
 
       - name: Install dependencies
         run: npm install
 
       - name: Build the project
-        run: npm run build  # Make sure you have a build script in your package.json
+        run: npm run build  # Ensure you have a build script in your package.json
 
       - name: Set up Firebase CLI
         uses: firebase/github-actions@v1
@@ -33,3 +33,6 @@ jobs:
       - name: Deploy to Firebase Hosting
         run: |
           firebase deploy --only hosting
+
+      - name: Set VITE_BACKEND_URL for the build process
+        run: echo "VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}" >> $GITHUB_ENV
