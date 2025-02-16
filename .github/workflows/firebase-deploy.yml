@@ -1,9 +1,9 @@
-name: Deploy to Firebase
+name: Deploy to Firebase Hosting
 
 on:
   push:
     branches:
-      - main  # Set the branch that triggers deployment
+      - main  # Trigger deployment on push to the main branch
 
 jobs:
   deploy:
@@ -19,19 +19,17 @@ jobs:
           node-version: '16'  # Set the appropriate Node.js version
 
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install
 
       - name: Build the project
-        run: |
-          npm run build
+        run: npm run build  # Make sure you have a build script in your package.json
 
       - name: Set up Firebase CLI
-        uses: wzieba/Firebase-Action@v2
+        uses: firebase/github-actions@v1
         with:
-          firebase_token: ${{ secrets.FIREBASE_AUTH_TOKEN }}
-          project_id: ${{ secrets.FIREBASE_PROJECT_ID }}
+          firebase_token: ${{ secrets.FIREBASE_AUTH_TOKEN }}  # Ensure you have set this in GitHub Secrets
+          project_id: ${{ secrets.FIREBASE_PROJECT_ID }}  # Ensure you have set this in GitHub Secrets
 
-      - name: Deploy to Firebase
+      - name: Deploy to Firebase Hosting
         run: |
           firebase deploy --only hosting
