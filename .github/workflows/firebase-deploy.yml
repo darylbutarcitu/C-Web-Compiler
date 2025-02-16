@@ -1,16 +1,16 @@
-name: Deploy to Firebase Hosting
+name: Build and Deploy to Firebase Hosting
 
 on:
   push:
     branches:
-      - main  # Trigger deployment on push to the main branch
+      - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v2
 
       - name: Set up Node.js
@@ -21,18 +21,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build the project
-        run: npm run build  # Ensure you have a build script in your package.json
+      - name: Build the app
+        run: npm run build
+        env:
+          VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}  # Pass the environment variable here
 
       - name: Set up Firebase CLI
-        uses: firebase/github-actions@v1
+        uses: wzieba/Firebase-Action@v2
         with:
-          firebase_token: ${{ secrets.FIREBASE_AUTH_TOKEN }}  # Ensure you have set this in GitHub Secrets
-          project_id: ${{ secrets.FIREBASE_PROJECT_ID }}  # Ensure you have set this in GitHub Secrets
+          firebase_token: ${{ secrets.FIREBASE_TOKEN }}
 
       - name: Deploy to Firebase Hosting
-        run: |
-          firebase deploy --only hosting
-
-      - name: Set VITE_BACKEND_URL for the build process
-        run: echo "VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}" >> $GITHUB_ENV
+        run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }}
