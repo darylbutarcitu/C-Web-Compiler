@@ -118,7 +118,7 @@ function App() {
 
   return (
     <div className="app-container" onMouseMove={onDrag} onMouseUp={() => setIsDragging(false)} tabIndex={0}>
-      <h1>C - Web Compiler</h1>
+      <h1>C - Web Compiler v1.0</h1>
       <Editor
         height="400px"
         language="c"
@@ -144,7 +144,7 @@ function App() {
       {showTerminal && (
         <div className="terminal-container" style={{ top: position.y, left: position.x }}>
           <div className="terminal-header" onMouseDown={startDrag}>
-            <span>🐸 Rylee's Terminal 🐸</span>
+            <span>🐸 Rylee's Terminal v1.0 🐸</span>
             <button className="terminal-close" onClick={handleTerminalClose}>X</button>
           </div>
           <div className="terminal-output">
