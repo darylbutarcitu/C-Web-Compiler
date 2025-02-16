@@ -140,7 +140,7 @@ function App() {
       </button>
       <br></br>
       <br></br>
-      <span>Note: Display only.<br></br>User input (scanf, fgets, etc) not supported yet huhu eme</span>
+      <span>Note: Display only.<br></br>User input (scanf, fgets, etc) not supported yet huhu... eme</span>
       {showTerminal && (
         <div className="terminal-container" style={{ top: position.y, left: position.x }}>
           <div className="terminal-header" onMouseDown={startDrag}>
