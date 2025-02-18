@@ -97,8 +97,8 @@ function App() {
     if (!isDragging) return;
     const newX = e.clientX - offset.x;
     const newY = e.clientY - offset.y;
-    const clampedX = Math.max(0, Math.min(newX, window.innerWidth - terminalWidth));
-    const clampedY = Math.max(0, Math.min(newY, window.innerHeight - terminalHeight));
+    const clampedX = Math.max(0, Math.min(newX, window.innerWidth*0.999 - terminalWidth));
+    const clampedY = Math.max(0, Math.min(newY, window.innerHeight*1.15 - terminalHeight));
     setPosition({ x: clampedX, y: clampedY });
   };
 
@@ -118,7 +118,7 @@ function App() {
 
   return (
     <div className="app-container" onMouseMove={onDrag} onMouseUp={() => setIsDragging(false)} tabIndex={0}>
-      <h1>C - Web Compiler v1.0</h1>
+      <h2>C - Web Compiler v1.0</h2>
       <Editor
         height="400px"
         language="c"

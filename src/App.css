@@ -14,13 +14,13 @@ body {
 
 .app-container {
   width: 100%;
-  max-width: 1200px;
-  padding: 20px;
+  height: auto;
+  max-width: 1366px;
+  padding: 1cap;
   background-color: #2d2d2d;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   text-align: center;
-  resize: both; 
   overflow: auto; 
   min-width: 0; 
   min-height: 0; 
